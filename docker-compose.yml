@@ -44,7 +44,7 @@ services:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 20
     networks:
       - iut
 
