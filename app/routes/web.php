@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PwdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
+    return view('landing');
+})->name('landing');
+
+Route::get('/welcome', function () {
     return view('welcome');
-});
+})->name('welcome');
+
+Route::get('/addpassword', function () {
+    return view('addpassword');
+})->name('addpassword');
+
+Route::post('/addpasswordreq', [
+    PwdController::class, 'addPasswordRequest'
+])->name('addpasswordreq');
