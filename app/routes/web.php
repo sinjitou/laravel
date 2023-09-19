@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PwdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+// Page d'ajout d'un mot de passe
+Route::get('/addpassword', function () {
+    return view('addpassword');
+})->name('addpassword');
+
+// Request pour ajout de mot de passe
+Route::post('/addpasswordreq', [
+    PwdController::class, 'addPasswordRequest'
+])->name('addpasswordreq');
+
+
+
+require __DIR__.'/auth.php';
+
+
+
