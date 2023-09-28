@@ -11,6 +11,17 @@ use App\Models\User;
 class Password extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'site',
+        'login',
+        'password',
+        'user_id',
+    ];
+
+    protected $casts = [
+        'password' => 'encrypted',
+    ];
     /**
      * Relations avec User
      */
