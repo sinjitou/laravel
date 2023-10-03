@@ -12,7 +12,6 @@
                     @if ($passwordToEdit[0])
                         <form action="{{ route('editpassword.updatepwd', $passwordToEdit[0]->id) }}" method="POST">
                             @csrf
-                            {{-- je suis ici : probleme pour update --}}
                             <div class='flex flex-col w-1/2'>
                                 <label class='dark:text-gray-100' for="site">Lien du site</label>
                                 <input value="{{ $passwordToEdit[0]->site }}" type="text" name="site"

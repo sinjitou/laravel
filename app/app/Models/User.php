@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-use App\Models\Teams;
+use App\Models\Team;
 use App\Models\Password;
 
 class User extends Authenticatable
@@ -50,19 +50,11 @@ class User extends Authenticatable
 
 
     /**
-     * Relations avec Teams
-     */
-    public function teams() : HasMany
-    {
-        return $this->hasMany(Teams::class);
-    }
-
-    /**
      * Relations avec Team
      */
-    public function team() : BelongsToMany
+    public function teams() : BelongsToMany
     {
-        return $this->belongsToMany(Teams::class);
+        return $this->belongsToMany(Team::class);
     }
 
     /**

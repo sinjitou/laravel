@@ -52,7 +52,7 @@ class PwdController extends Controller
         return view('editpassword', ['passwordToEdit' => $password]);
     }
 
-    public function editPassword(Request $request, $id)
+    public function editPassword(Request $request, int $id)
     {
         // Système de validation
         $validated = $request->validate([
@@ -60,6 +60,13 @@ class PwdController extends Controller
             'login' => 'required|string',
             'password' => 'required|string',
         ]);
-        dd($id);
+        if($validated) {
+            Password::where('id', $id)->first()->update([
+                'site' => $request->site,
+                'login' => $request->login,
+                'password' => $request->password,
+            ]);
+            return redirect('/dashboard');
+        }
     }
 }

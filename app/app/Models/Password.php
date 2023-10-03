@@ -17,6 +17,7 @@ class Password extends Model
         'login',
         'password',
         'user_id',
+        'id'
     ];
 
     protected $casts = [

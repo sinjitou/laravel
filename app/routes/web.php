@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PwdController;
+use App\Http\Controllers\TeamsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,16 @@ Route::post('/addpasswordreq', [
 // Page modifier mot de passe : 
 Route::get('/editpassword/{id}', [PwdController::class, 'getPasswordToEdit'])->name('editpassword.getpwd');
 
-Route::post('/editpasswordreq', [PwdController::class, 'editPassword'])->name('editpassword.updatepwd');
+Route::post('/editpasswordreq/{id}', [PwdController::class, 'editPassword'])->name('editpassword.updatepwd');
+
+// Teams
+Route::get('/teams', 
+    [TeamsController::class, 'show']
+)->name('teams.view');
+
+Route::post('/teams', [
+    TeamsController::class, 'createTeam'
+])->name('teams.createTeam');
 
 
 

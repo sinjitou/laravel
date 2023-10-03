@@ -19,7 +19,7 @@
                                 <p>login</p>
                                 <p>{{ $item->login }}</p>
                             </div>
-                            <a href="/editpassword/{{ $item->id }}" class='overflow-hidden'>
+                            <a href="{{ route('editpassword.getpwd', ['id' => $item->id]) }}" class='overflow-hidden'>
                                 <p>Mot de passe</p>
                                 <p>{{ str_repeat('*', strlen($item->password)) }}</p>
                             </a>
