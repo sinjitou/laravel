@@ -56,6 +56,11 @@ Route::post('/teams', [
     TeamsController::class, 'createTeam'
 ])->name('teams.createTeam');
 
+// Page pour ajouter un membre
+
+Route::get('/addmember/{id}', [TeamsController::class, 'addMemberView'])->name('addmember.getusers');
+Route::post('/addmemberreq/{id}', [TeamsController::class, 'addMember'])->name('addmember.add');
+
 
 
 require __DIR__.'/auth.php';

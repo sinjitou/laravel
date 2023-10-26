@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Mon espace') }}
+            {{ __('addpwd.myspace') }}
         </h2>
     </x-slot>
 
@@ -12,15 +12,15 @@
                     <div class="mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-row justify-between w-full">
                             <div class='overflow-hidden'>
-                                <p>Site</p>
+                                <p> {{ __('addpwd.link') }} </p>
                                 <p>{{ $item->site }}</p>
                             </div>
                             <div class='overflow-hidden'>
-                                <p>login</p>
+                                <p> {{ __('addpwd.login') }} </p>
                                 <p>{{ $item->login }}</p>
                             </div>
                             <a href="{{ route('editpassword.getpwd', ['id' => $item->id]) }}" class='overflow-hidden'>
-                                <p>Mot de passe</p>
+                                <p> {{ __('addpwd.pwd') }} </p>
                                 <p>{{ str_repeat('*', strlen($item->password)) }}</p>
                             </a>
 

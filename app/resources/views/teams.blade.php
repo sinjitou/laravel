@@ -9,11 +9,11 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 ">
-                        <h2 class="py-6 text-gray-200 ">{{ __('Ajouter une team') }}</h2>
+                        <h2 class="py-6 text-gray-200 ">{{ __('teams.addTeam') }}</h2>
                         <form action="{{ route('teams.createTeam') }}" method="POST">
                             @csrf
                             <div class='flex flex-col w-1/2'>
-                                <label class='dark:text-gray-100' for="team">Nom de l'équipe</label>
+                                <label class='dark:text-gray-100' for="team"> {{ __('teams.nameTeam') }} </label>
                                 <input value="{{ old('team') }}" type="text" name="team" id="team"
                                     class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                 @error('team')
@@ -21,7 +21,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit">Envoyer</button>
+                            <button type="submit">{{ __('teams.submit') }}</button>
                         </form>
                     </div>
                 </div>
@@ -36,6 +36,9 @@
                                 <p>TEAM</p>
                                 <p>{{ $item->name }}</p>
                             </div>
+                            <a href="{{ route('addmember.getusers', ['id' => $item->id]) }}" class='overflow-hidden'>
+                                <p> {{ __('teams.add') }} </p>
+                            </a>
 
                         </div>
                     </div>

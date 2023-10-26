@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Ajouter un mot de passe') }}
+            {{ __('addpwd.title') }}
         </h2>
     </x-slot>
 
@@ -12,7 +12,7 @@
                     <form action="{{ route('addpasswordreq') }}" method="POST">
                         @csrf
                         <div class='flex flex-col w-1/2'>
-                            <label class='dark:text-gray-100' for="site">Lien du site</label>
+                            <label class='dark:text-gray-100' for="site">{{ __('addpwd.link') }}</label>
                             <input value="{{ old('site') }}" type="text" name="site" id="site"
                                 class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                             @error('site')
@@ -20,7 +20,7 @@
                             @enderror
                         </div>
                         <div class='flex flex-col w-1/2'>
-                            <label class='dark:text-gray-100' for="login">Login de connexion</label>
+                            <label class='dark:text-gray-100' for="login">{{ __('addpwd.login') }}</label>
                             <input value="{{ old('login') }}" type="text" name="login" id="login"
                                 class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                             @error('login')
@@ -28,14 +28,14 @@
                             @enderror
                         </div>
                         <div class='flex flex-col w-1/2'>
-                            <label class='dark:text-gray-100' for="password">Mot de passe</label>
+                            <label class='dark:text-gray-100' for="password"> {{ __('addpwd.password') }} </label>
                             <input value="{{ old('password') }}" type="password" name="password" id="password"
                                 class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                             @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        <button type="submit">Envoyer</button>
+                        <button type="submit"> {{ __('addpwd.submit') }} </button>
                     </form>
 
                 </div>

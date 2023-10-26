@@ -13,7 +13,7 @@
                         <form action="{{ route('editpassword.updatepwd', $passwordToEdit[0]->id) }}" method="POST">
                             @csrf
                             <div class='flex flex-col w-1/2'>
-                                <label class='dark:text-gray-100' for="site">Lien du site</label>
+                                <label class='dark:text-gray-100' for="site"> {{ __('addpwd.link') }} </label>
                                 <input value="{{ $passwordToEdit[0]->site }}" type="text" name="site"
                                     id="site" class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                 @error('site')
@@ -21,7 +21,7 @@
                                 @enderror
                             </div>
                             <div class='flex flex-col w-1/2'>
-                                <label class='dark:text-gray-100' for="login">Login de connexion</label>
+                                <label class='dark:text-gray-100' for="login"> {{ __('addpwd.login') }} </label>
                                 <input value="{{ $passwordToEdit[0]->login }}" type="text" name="login"
                                     id="login" class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                 @error('login')
@@ -29,7 +29,7 @@
                                 @enderror
                             </div>
                             <div class='flex flex-col w-1/2'>
-                                <label class='dark:text-gray-100' for="password">Mot de passe</label>
+                                <label class='dark:text-gray-100' for="password"> {{ __('addpwd.pwd') }} </label>
                                 <input value="{{ $passwordToEdit[0]->password }}" type="password" name="password"
                                     id="password" class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                 <button id="eyeIcon" type="button" onclick="togglePasswordVisibility()"
