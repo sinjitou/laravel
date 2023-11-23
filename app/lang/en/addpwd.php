@@ -8,4 +8,5 @@ return [
     "pwd" => "Password",
     "newpwd" => "New password",
     "myspace" => "My space",
+    "edit" => "Edit",
 ];

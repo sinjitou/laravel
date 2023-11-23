@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use App\Models\User;
+use App\Models\Team;
 
 class Password extends Model
 {
@@ -29,5 +30,11 @@ class Password extends Model
     public function user() : BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    
+    public function teams() : BelongsToMany
+    {
+        return $this->belongsToMany(Password::class);
     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\User;
+use App\Models\Password;
 
 class Team extends Model
 {
@@ -25,9 +26,15 @@ class Team extends Model
     // }
 
 
-    public function user() : BelongsToMany
+    public function users() : BelongsToMany
     {
         return $this->belongsToMany(User::class);
+    }
+
+    
+    public function passwords() : BelongsToMany
+    {
+        return $this->belongsToMany(Password::class);
     }
 
 }

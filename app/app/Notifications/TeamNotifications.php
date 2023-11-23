@@ -15,7 +15,7 @@ class TeamNotifications extends Notification
     private $addedBy;
     private $addedTime;
     private $joinedTeam;
-    private $url
+    private $url;
 
     /**
      * Create a new notification instance.
@@ -36,7 +36,7 @@ class TeamNotifications extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -59,7 +59,9 @@ class TeamNotifications extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            //
+            'addedUser' => $this->addedUser,
+            'addedBy' => $this->addedBy,
+            'added_time' => $this->addedTime,
         ];
     }
 }

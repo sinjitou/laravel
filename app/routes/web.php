@@ -18,7 +18,7 @@ use App\Http\Controllers\TeamsController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
 Route::get('/dashboard' ,
@@ -60,6 +60,7 @@ Route::post('/teams', [
 
 Route::get('/addmember/{id}', [TeamsController::class, 'addMemberView'])->name('addmember.getusers');
 Route::post('/addmemberreq/{id}', [TeamsController::class, 'addMember'])->name('addmember.add');
+Route::post('/linkpwdteam/{id}', [TeamsController::class, 'linkPwdWithTeam'])->name('linkpwdteam.add');
 
 
 

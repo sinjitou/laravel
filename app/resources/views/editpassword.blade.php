@@ -40,7 +40,37 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <button type="submit">Envoyer</button>
+
+
+                            <button class='dark:text-gray-100' type="submit">Envoyer</button>
+                        </form>
+                    @else
+                        <p>Erreur</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="py-4">
+        </div>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 ">
+                    @if (!empty($teams))
+                        <form action="{{ route('linkpwdteam.add', $passwordToEdit[0]->id) }}" method="POST">
+                            @csrf
+
+                            <div class='flex flex-col w-1/2'>
+                                @foreach ($teams as $team)
+                                    <span>
+                                        <input type="checkbox" name="teams[]" value="{{ $team->id }}"
+                                            id="teams">
+                                        <label class='dark:text-gray-100' for="teams">{{ $team->name }}</label>
+                                    </span>
+                                @endforeach
+                            </div>
+
+                            <button class='dark:text-gray-100' type="submit">Lier le mot de passe avec un ou plusieurs
+                                teams</button>
                         </form>
                     @else
                         <p>Erreur</p>

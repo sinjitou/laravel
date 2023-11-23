@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
+use App\Models\User;
+use App\Models\Team;
+
 class PwdController extends Controller
 {
     public function addPasswordRequest(Request $request)
@@ -47,9 +50,22 @@ class PwdController extends Controller
 
     public function getPasswordToEdit($id)
     {
+
+        
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
+        $teamsOfUser = array();
+        $teams = Team::all();
+
+        foreach ($teams as $team) {
+            if ($team->users->contains($user)) {
+                $teamsOfUser[] = $team;
+            }
+        }
+
         $password = Password::where('id', $id)->get();
         // dd($password);
-        return view('editpassword', ['passwordToEdit' => $password]);
+        return view('editpassword', ['passwordToEdit' => $password, 'teams' => $teamsOfUser]);
     }
 
     public function editPassword(Request $request, int $id)

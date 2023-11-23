@@ -19,9 +19,14 @@
                                 <p> {{ __('addpwd.login') }} </p>
                                 <p>{{ $item->login }}</p>
                             </div>
-                            <a href="{{ route('editpassword.getpwd', ['id' => $item->id]) }}" class='overflow-hidden'>
+                            <div class='overflow-hidden'>
                                 <p> {{ __('addpwd.pwd') }} </p>
                                 <p>{{ str_repeat('*', strlen($item->password)) }}</p>
+                            </div>
+
+                            <a href="{{ route('editpassword.getpwd', ['id' => $item->id]) }}" class='overflow-hidden'>
+                                <p> {{ __('addpwd.edit') }} </p>
+
                             </a>
 
                         </div>
