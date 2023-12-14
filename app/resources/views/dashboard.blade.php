@@ -4,10 +4,16 @@
             {{ __('addpwd.myspace') }}
         </h2>
     </x-slot>
+    {{-- todo exercice 4 - point 2 --}}
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
             @if ($passwords)
+                <div class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-12 px-4 rounded">
+                    <a href="{{ route('password.download') }}">
+                        Télécharger les mots de passe en CSV
+                    </a>
+                </div>
                 @foreach ($passwords as $item)
                     <div class="mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900 dark:text-gray-100 flex flex-row justify-between w-full">

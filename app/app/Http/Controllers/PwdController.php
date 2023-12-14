@@ -59,9 +59,7 @@ class PwdController extends Controller
         $password = Password::where('id', $id)->get();
 
         foreach ($teams as $team) {
-            if ($team->users->contains($user)) {
-                if(!$team->passwords->contains($password[0])) $teamsOfUser[] = $team;
-            }
+            if ($team->users->contains($user) && !$team->passwords->contains($password[0])) $teamsOfUser[] = $team;
         }
 
         // dd($password);
@@ -85,4 +83,47 @@ class PwdController extends Controller
             return redirect('/dashboard');
         }
     }
+
+
+    public function download()
+{
+    $userId = Auth::user()->id;
+    $passwords = Password::where('user_id', $userId)->get();
+
+    
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => 'attachment; filename="passwords.csv"',
+    ];
+
+    $callback = function () use ($passwords) {
+        $file = fopen('php://output', 'w');
+
+        fputcsv($file, ['site', 'login', 'Mot de passe', 'dernière date de modification', 'Team(s)']);
+        $userId = Auth::user()->id;
+        $user = User::find($userId);
+        $teamsOfUser = array();
+        $teams = Team::all();
+
+        foreach ($passwords as $password) {
+            $pwdInTeamsOfUser = array();
+            foreach ($teams as $team) {
+                if ($team->users->contains($user) && $team->passwords->contains($password)) $pwdInTeamsOfUser[] = $team->name;
+            }
+            $teamsPwd = implode(" - ", (array)$pwdInTeamsOfUser);
+            fputcsv($file, [
+                $password->site,
+                $password->login,
+                $password->password,
+                $password->updated_at,
+                $teamsPwd,
+            ]);
+        }
+
+        fclose($file);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
 }

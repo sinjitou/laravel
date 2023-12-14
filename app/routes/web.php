@@ -20,10 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-
+// page affichage des mots de passes
 Route::get('/dashboard' ,
     [PwdController::class, 'show']
 )->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,20 +48,23 @@ Route::get('/editpassword/{id}', [PwdController::class, 'getPasswordToEdit'])->n
 
 Route::post('/editpasswordreq/{id}', [PwdController::class, 'editPassword'])->name('editpassword.updatepwd');
 
-// Teams
+// afficher les teams
 Route::get('/teams', 
     [TeamsController::class, 'show']
 )->name('teams.view');
-
+// creer une team
 Route::post('/teams', [
     TeamsController::class, 'createTeam'
 ])->name('teams.createTeam');
 
 // Page pour ajouter un membre
-
 Route::get('/addmember/{id}', [TeamsController::class, 'addMemberView'])->name('addmember.getusers');
 Route::post('/addmemberreq/{id}', [TeamsController::class, 'addMember'])->name('addmember.add');
+// lier une team
 Route::post('/linkpwdteam/{id}', [TeamsController::class, 'linkPwdWithTeam'])->name('linkpwdteam.add');
+
+// download of password
+Route::get('/password/download', [PwdController::class, 'download'])->name('password.download');
 
 
 
