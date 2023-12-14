@@ -35,6 +35,23 @@
                             <div class='overflow-hidden'>
                                 <p>TEAM</p>
                                 <p>{{ $item->name }}</p>
+                                @if (!empty($passwords[$item->id]))
+                                    <p>{{ __('passwords.passwords') }}</p>
+                                    @foreach ($passwords[$item->id] as $pwd)
+                                        <div
+                                            class="p-6 text-gray-900 dark:text-gray-100 flex flex-row justify-between w-full">
+                                            <p>{{ $pwd->site }} - {{ $pwd->login }} </p>
+                                            <input value="{{ $pwd->password }}" type="password" disabled
+                                                name="password" id="password{{ $pwd->id }}"
+                                                class='w-50 dark:bg-gray-800 dark:text-gray-100'>
+                                            <button id="eyeIcon{{ $pwd->id }}" type="button"
+                                                onclick="togglePasswordVisibility({{ $pwd->id }})"
+                                                class="btn btn-outline-secondary dark:text-gray-100">
+                                                Voir le mot de passe
+                                            </button>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                             <a href="{{ route('addmember.getusers', ['id' => $item->id]) }}" class='overflow-hidden'>
                                 <p> {{ __('teams.add') }} </p>
@@ -53,6 +70,20 @@
             @endif
         </div>
     </div>
+    <script>
+        function togglePasswordVisibility(id) {
+            let passwordInput = document.getElementById("password" + id);
+            let eyeIcon = document.getElementById("eyeIcon" + id);
+
+            if (passwordInput.type === "password") {
+                eyeIcon.textContent = "Cacher le mot de passe";
+                passwordInput.type = "text";
+            } else {
+                eyeIcon.textContent = "Voir le mot de passe";
+                passwordInput.type = "password";
+            }
+        }
+    </script>
 
 
 </x-app-layout>

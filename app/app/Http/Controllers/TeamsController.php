@@ -45,7 +45,14 @@ class TeamsController extends Controller
         $userId = Auth::user()->id;
         $user = User::find($userId);
         $allteams = $user->teams;
-        return view('teams', ['teams' => $allteams]);
+        
+        $passwordOfUser = array();
+
+        foreach ($allteams as $team) {
+            if($team->passwords) $passwordOfUser[$team->id] = $team->passwords;
+        }
+
+        return view('teams', ['teams' => $allteams, 'passwords' => $passwordOfUser]);
     }
 
     public function addMemberView(Request $request, int $id)
@@ -113,6 +120,10 @@ class TeamsController extends Controller
 
     public function linkPwdWithTeam(Request $request, int $id) {
 
+        $validated = $request->validate([
+            'teams' => 'required|array',
+        ]);
+
         $password = Password::find(
             $id
         );
@@ -121,8 +132,7 @@ class TeamsController extends Controller
             $team = Team::find(
                 $value
             );
-            // dd($team, $password);
-            $team->passwords()->syncWithoutDetaching($password->id);
+            if($team) $password->teams()->syncWithoutDetaching($team->id);
         }
         
         return redirect('/dashboard');

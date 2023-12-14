@@ -56,14 +56,14 @@ class PwdController extends Controller
         $user = User::find($userId);
         $teamsOfUser = array();
         $teams = Team::all();
+        $password = Password::where('id', $id)->get();
 
         foreach ($teams as $team) {
             if ($team->users->contains($user)) {
-                $teamsOfUser[] = $team;
+                if(!$team->passwords->contains($password[0])) $teamsOfUser[] = $team;
             }
         }
 
-        $password = Password::where('id', $id)->get();
         // dd($password);
         return view('editpassword', ['passwordToEdit' => $password, 'teams' => $teamsOfUser]);
     }

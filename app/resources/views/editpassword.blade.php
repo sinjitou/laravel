@@ -73,7 +73,7 @@
                                 teams</button>
                         </form>
                     @else
-                        <p>Erreur</p>
+                        <p>Pas de team ou déjà relier à toutes les teams</p>
                     @endif
                 </div>
             </div>
