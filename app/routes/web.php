@@ -16,9 +16,7 @@ use App\Http\Controllers\TeamsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [ProfileController::class, 'welcome'])->name('welcome');
 
 // page affichage des mots de passes
 Route::get('/dashboard' ,
@@ -34,9 +32,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Page d'ajout d'un mot de passe
-Route::get('/addpassword', function () {
-    return view('addpassword');
-})->name('addpassword');
+Route::get('/addpassword', [PwdController::class, 'addPasswordView'])->name('addpassword');
 
 // Request pour ajout de mot de passe
 Route::post('/addpasswordreq', [
@@ -63,7 +59,7 @@ Route::post('/addmemberreq/{id}', [TeamsController::class, 'addMember'])->name('
 // lier une team
 Route::post('/linkpwdteam/{id}', [TeamsController::class, 'linkPwdWithTeam'])->name('linkpwdteam.add');
 
-// download of password
+// download of password en csv
 Route::get('/password/download', [PwdController::class, 'download'])->name('password.download');
 
 

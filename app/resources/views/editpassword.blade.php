@@ -34,7 +34,7 @@
                                     id="password" class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                 <button id="eyeIcon" type="button" onclick="togglePasswordVisibility()"
                                     class="btn btn-outline-secondary dark:text-gray-100">
-                                    Voir le mot de passe
+                                    {{ __('addpwd.seePwd') }}
                                 </button>
                                 @error('password')
                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -42,10 +42,10 @@
                             </div>
 
 
-                            <button class='dark:text-gray-100' type="submit">Envoyer</button>
+                            <button class='dark:text-gray-100' type="submit"> {{ __('addpwd.change') }} </button>
                         </form>
                     @else
-                        <p>Erreur</p>
+                        <p>{{ __('addpwd.error') }}</p>
                     @endif
                 </div>
             </div>
@@ -69,11 +69,10 @@
                                 @endforeach
                             </div>
 
-                            <button class='dark:text-gray-100' type="submit">Lier le mot de passe avec un ou plusieurs
-                                teams</button>
+                            <button class='dark:text-gray-100' type="submit">{{ __('addpwd.linkToTeam') }}</button>
                         </form>
                     @else
-                        <p>Pas de team ou déjà relier à toutes les teams</p>
+                        <p>{{ __('addpwd.noTeamToLink') }}</p>
                     @endif
                 </div>
             </div>
@@ -85,10 +84,10 @@
             let eyeIcon = document.getElementById("eyeIcon");
 
             if (passwordInput.type === "password") {
-                eyeIcon.textContent = "Cacher le mot de passe";
+                eyeIcon.textContent = "🚫👁️";
                 passwordInput.type = "text";
             } else {
-                eyeIcon.textContent = "Voir le mot de passe";
+                eyeIcon.textContent = 👁️;
                 passwordInput.type = "password";
             }
         }

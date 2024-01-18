@@ -47,7 +47,7 @@
                                             <button id="eyeIcon{{ $pwd->id }}" type="button"
                                                 onclick="togglePasswordVisibility({{ $pwd->id }})"
                                                 class="btn btn-outline-secondary dark:text-gray-100">
-                                                Voir le mot de passe
+                                                {{ __('addpwd.seePwd') }}
                                             </button>
                                         </div>
                                     @endforeach
@@ -63,7 +63,7 @@
             @else
                 <div class="mb-4 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">
-                        {{ __('Aucune Team') }}
+                        {{ __('teams.noTeam') }}
 
                     </div>
                 </div>
@@ -76,10 +76,10 @@
             let eyeIcon = document.getElementById("eyeIcon" + id);
 
             if (passwordInput.type === "password") {
-                eyeIcon.textContent = "Cacher le mot de passe";
+                eyeIcon.textContent = "🚫👁️";
                 passwordInput.type = "text";
             } else {
-                eyeIcon.textContent = "Voir le mot de passe";
+                eyeIcon.textContent = "👁️";
                 passwordInput.type = "password";
             }
         }

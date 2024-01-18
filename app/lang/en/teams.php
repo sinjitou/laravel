@@ -6,4 +6,6 @@ return [
     'submit' => 'Submit',
     'team' => "Team",
     "add" => "Add",
+    "noTeam" => "No team",
+    "addmember" => "Add member",
 ];

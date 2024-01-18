@@ -16,6 +16,11 @@ use App\Models\Team;
 
 class PwdController extends Controller
 {
+
+    public function addPasswordView() {
+        return view('addpassword');
+    }
+
     public function addPasswordRequest(Request $request)
     {
         // Système de validation
@@ -103,21 +108,14 @@ class PwdController extends Controller
         fputcsv($file, ['site', 'login', 'Mot de passe', 'dernière date de modification', 'Team(s)']);
         $userId = Auth::user()->id;
         $user = User::find($userId);
-        $teamsOfUser = array();
-        $teams = Team::all();
 
         foreach ($passwords as $password) {
-            $pwdInTeamsOfUser = array();
-            foreach ($teams as $team) {
-                if ($team->users->contains($user) && $team->passwords->contains($password)) $pwdInTeamsOfUser[] = $team->name;
-            }
-            $teamsPwd = implode(" - ", (array)$pwdInTeamsOfUser);
             fputcsv($file, [
                 $password->site,
                 $password->login,
                 $password->password,
                 $password->updated_at,
-                $teamsPwd,
+                $password->teams->implode('name', ' - '),
             ]);
         }
 

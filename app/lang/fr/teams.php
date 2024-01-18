@@ -6,4 +6,6 @@ return [
     'submit' => 'Envoyer',
     'team' => "Equipe",
     "add" => "Ajouter",
+    "noTeam" => "Aucune équipe",
+    "addmember" => "Ajouter un membre",
 ];

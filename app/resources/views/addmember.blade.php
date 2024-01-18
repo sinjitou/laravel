@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Ajouter un membre') }}
+            {{ __('teams.addmember') }}
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
                         <form action="{{ route('addmember.add', $id) }}" method="POST">
                             @csrf
                             <div class='flex flex-col w-1/2'>
-                                <label class='dark:text-gray-100' for="users"> {{ __('Ajouter un membre') }} </label>
+                                <label class='dark:text-gray-100' for="users"> {{ __('teams.addmember') }} </label>
                                 <select name="users" id="users" class='w-50 dark:bg-gray-800 dark:text-gray-100'>
                                     @foreach ($users as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -24,10 +24,10 @@
                                 @enderror
                             </div>
 
-                            <button type="submit">Ajouter</button>
+                            <button type="submit">{{ __('addpwd.submit') }}</button>
                         </form>
                     @else
-                        <p>Erreur</p>
+                        <p>{{ __('addpwd.noUser') }} </p>
                     @endif
                 </div>
             </div>
